@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
   <meta charset="UTF-8">
   <title>Portfolio – Annamaja Segtnan</title>
@@ -37,15 +37,15 @@
 </head>
 <body>
   <h1 id="headline">Hello world.</h1>
-  <p id="message">This is just a placeholder – portfolio coming soon.</p>
+  <p id="message">Det här är bara en tillfällig sida – portföljen kommer snart.</p>
 
   <div class="lang">
-    <button id="svBtn" aria-pressed="false">SV</button>
-    <button id="enBtn" aria-pressed="true">EN</button>
+    <button id="svBtn" aria-pressed="true">SV</button>
+    <button id="enBtn" aria-pressed="false">EN</button>
   </div>
 
   <footer id="footer">
-    © <span id="year"></span> Annamaja Segtnan – UI/UX Designer, Stockholm
+    © <span id="year"></span> Annamaja Segtnan – UI/UX-designer, Stockholm
   </footer>
 
   <script>
@@ -59,8 +59,8 @@
 
     const texts = {
       sv: {
-        headline: "Hej världen.",
-        message: "Det här är bara en platshållare – portföljen kommer snart.",
+        headline: "Hello world.",
+        message: "Det här är bara en tillfällig sida – portföljen kommer snart.",
         footer: `© ${new Date().getFullYear()} Annamaja Segtnan – UI/UX-designer, Stockholm`
       },
       en: {
@@ -77,6 +77,9 @@
       svBtn.setAttribute("aria-pressed", lang === "sv");
       enBtn.setAttribute("aria-pressed", lang === "en");
     }
+
+    // Svenska default
+    setLang("sv");
 
     svBtn.addEventListener("click", () => setLang("sv"));
     enBtn.addEventListener("click", () => setLang("en"));
