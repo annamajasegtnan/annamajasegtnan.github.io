@@ -2,51 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Annamaja Segtnan – Portfolio</title>
+  <title>Portfolio – Annamaja Segtnan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: sans-serif;
       margin: 40px;
-      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
       line-height: 1.6;
     }
-    h1 { margin-bottom: 0.3em; }
-    .lang { margin-bottom: 1em; }
+    h1 { font-size: 2rem; margin-bottom: 0.5em; }
+    p { margin: 0; }
+    .lang { margin: 1em 0; }
+    button {
+      padding: 6px 12px;
+      margin: 0 4px;
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button[aria-pressed="true"] { background: gray; }
     footer {
-      margin-top: 2em;
+      margin-top: 3em;
       font-size: 0.9em;
       color: #555;
     }
   </style>
 </head>
 <body>
-  <h1>Annamaja Segtnan</h1>
-  <p><strong>UI/UX Designer • Stockholm</strong></p>
+  <h1 id="headline">Hello world.</h1>
+  <p id="message">Portfolio loading…</p>
 
   <div class="lang">
-    <button onclick="setLang('sv')">Svenska</button>
-    <button onclick="setLang('en')">English</button>
+    <button id="svBtn" aria-pressed="false">SV</button>
+    <button id="enBtn" aria-pressed="true">EN</button>
   </div>
 
-  <div id="sv">
-    <h2>Portfolio under arbete</h2>
-    <p>Jag bygger om min portfolio. Välkommen tillbaka snart.</p>
-  </div>
-
-  <div id="en" style="display:none">
-    <h2>Portfolio in progress</h2>
-    <p>I’m rebuilding my portfolio. Please check back soon.</p>
-  </div>
-
-  <footer>© <span id="year"></span> Annamaja Segtnan</footer>
+  <footer id="footer">
+    © <span id="year"></span> Annamaja Segtnan – UI/UX Designer, Stockholm
+  </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const svBtn = document.getElementById('svBtn');
+    const enBtn = document.getElementById('enBtn');
+    const headline = document.getElementById('headline');
+    const message = document.getElementById('message');
+    const footer = document.getElementById('footer');
+
+    const texts = {
+      sv: {
+        headline: "Hello world.",
+        message: "Portfölj laddas…",
+        footer: `© ${new Date().getFullYear()} Annamaja Segtnan – UI/UX-designer, Stockholm`
+      },
+      en: {
+        headline: "Hello world.",
+        message: "Portfolio loading…",
+        footer: `© ${new Date().getFullYear()} Annamaja Segtnan – UI/UX Designer, Stockholm`
+      }
+    };
+
     function setLang(lang) {
-      document.getElementById('sv').style.display = lang === 'sv' ? 'block' : 'none';
-      document.getElementById('en').style.display = lang === 'en' ? 'block' : 'none';
+      headline.textContent = texts[lang].headline;
+      message.textContent = texts[lang].message;
+      footer.textContent = texts[lang].footer;
+      svBtn.setAttribute("aria-pressed", lang === "sv");
+      enBtn.setAttribute("aria-pressed", lang === "en");
     }
+
+    svBtn.addEventListener("click", () => setLang("sv"));
+    enBtn.addEventListener("click", () => setLang("en"));
   </script>
 </body>
 </html>
