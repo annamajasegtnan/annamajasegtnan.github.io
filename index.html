@@ -1,111 +1,52 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Annamaja Segtnan – UI/UX</title>
-  <meta name="color-scheme" content="light dark" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Annamaja Segtnan – Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    :root{
-      --bg:#fff; --fg:#000; --muted:#6f6f6f; --line:#e7e7e7;
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+      max-width: 600px;
+      line-height: 1.6;
     }
-    @media (prefers-color-scheme: dark){
-      :root{ --bg:#000; --fg:#fff; --muted:#b3b3b3; --line:#222; }
+    h1 { margin-bottom: 0.3em; }
+    .lang { margin-bottom: 1em; }
+    footer {
+      margin-top: 2em;
+      font-size: 0.9em;
+      color: #555;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; background:var(--bg); color:var(--fg);
-      font:16px/1.7 "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      display:flex; align-items:center; justify-content:center; padding:24px;
-    }
-    .wrap{width:100%; max-width:880px}
-    header{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:28px}
-    .title{font-weight:700; letter-spacing:-0.01em; line-height:1.1; margin:0}
-    .title span{display:block; font-size:clamp(28px,4.8vw,48px)}
-    .subtitle{margin:6px 0 0 0; color:var(--muted); font-weight:600; font-size:clamp(12px,1.8vw,14px)}
-    .lang{display:flex; gap:8px}
-    .lang button{
-      appearance:none; border:1px solid var(--fg);
-      background:var(--fg); color:var(--bg);
-      padding:8px 16px; cursor:pointer;
-      font-weight:600; border-radius:0;
-      transition:all .2s;
-    }
-    .lang button[aria-pressed="true"]{
-      background:var(--bg); color:var(--fg);
-    }
-    .card{
-      border:1px solid var(--fg); border-radius:0; padding:28px;
-    }
-    h2{margin:0 0 10px 0; font-size:clamp(18px,2.6vw,22px)}
-    p{margin:0; color:var(--muted)}
-    footer{margin-top:20px; color:var(--muted); font-size:13px; text-align:center}
-    .hidden{display:none}
-    :focus{outline:2px solid var(--fg); outline-offset:2px}
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <header>
-      <div>
-        <h1 class="title"><span>Annamaja Segtnan</span></h1>
-        <p class="subtitle" data-i18n="subtitle">UI/UX-designer • Stockholm</p>
-      </div>
-      <nav class="lang" role="tablist" aria-label="Language">
-        <button id="svBtn" aria-pressed="true">SV</button>
-        <button id="enBtn" aria-pressed="false">EN</button>
-      </nav>
-    </header>
+  <h1>Annamaja Segtnan</h1>
+  <p><strong>UI/UX Designer • Stockholm</strong></p>
 
-    <!-- Placeholder (SV) -->
-    <section id="sv" class="card">
-      <h2>Portfolio under arbete</h2>
-      <p>Jag bygger om min portfolio. Välkommen tillbaka snart.</p>
-    </section>
+  <div class="lang">
+    <button onclick="setLang('sv')">Svenska</button>
+    <button onclick="setLang('en')">English</button>
+  </div>
 
-    <!-- Placeholder (EN) -->
-    <section id="en" class="card hidden" lang="en">
-      <h2>Portfolio in progress</h2>
-      <p>I’m rebuilding my portfolio. Please check back soon.</p>
-    </section>
+  <div id="sv">
+    <h2>Portfolio under arbete</h2>
+    <p>Jag bygger om min portfolio. Välkommen tillbaka snart.</p>
+  </div>
 
-    <footer>© <span id="y"></span> Annamaja Segtnan</footer>
-  </main>
+  <div id="en" style="display:none">
+    <h2>Portfolio in progress</h2>
+    <p>I’m rebuilding my portfolio. Please check back soon.</p>
+  </div>
+
+  <footer>© <span id="year"></span> Annamaja Segtnan</footer>
 
   <script>
-    const y = document.getElementById('y'); 
-    y.textContent = new Date().getFullYear();
-
-    const svBtn = document.getElementById('svBtn');
-    const enBtn = document.getElementById('enBtn');
-    const svSec = document.getElementById('sv');
-    const enSec = document.getElementById('en');
-
-    const i18n = {
-      sv: { subtitle: "UI/UX-designer • Stockholm" },
-      en: { subtitle: "UI/UX Designer • Stockholm" }
-    };
-    const sub = document.querySelector('[data-i18n="subtitle"]');
-
-    function setLang(lang){
-      document.documentElement.lang = lang;
-      sub.textContent = i18n[lang].subtitle;
-      svSec.classList.toggle('hidden', lang!=='sv');
-      enSec.classList.toggle('hidden', lang!=='en');
-      svBtn.setAttribute('aria-pressed', String(lang==='sv'));
-      enBtn.setAttribute('aria-pressed', String(lang==='en'));
-      localStorage.setItem('lang', lang);
+    document.getElementById('year').textContent = new Date().getFullYear();
+    function setLang(lang) {
+      document.getElementById('sv').style.display = lang === 'sv' ? 'block' : 'none';
+      document.getElementById('en').style.display = lang === 'en' ? 'block' : 'none';
     }
-    const saved = localStorage.getItem('lang');
-    const initial = saved || (navigator.language || 'sv').slice(0,2);
-    setLang(initial === 'en' ? 'en' : 'sv');
-
-    svBtn.onclick = () => setLang('sv');
-    enBtn.onclick = () => setLang('en');
   </script>
 </body>
 </html>
-
