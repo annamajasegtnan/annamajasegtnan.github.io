@@ -4,155 +4,100 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Annamaja Segtnan – UI/UX</title>
-  <meta name="description" content="UI/UX portfolio placeholder – Swedish/English." />
   <meta name="color-scheme" content="light dark" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#fff; --fg:#1f2937; --muted:#6b7280; --accent:#0ea5e9; --card:#f8fafc; --ring:rgba(14,165,233,.25);
+      --bg:#fff; --fg:#000; --muted:#6f6f6f; --line:#e7e7e7;
     }
     @media (prefers-color-scheme: dark){
-      :root{ --bg:#0b1020; --fg:#e5e7eb; --muted:#a1a1aa; --card:#101735; --accent:#38bdf8; --ring:rgba(56,189,248,.25);}
+      :root{ --bg:#000; --fg:#fff; --muted:#b3b3b3; --line:#222; }
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0; background:var(--bg); color:var(--fg);
-      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      font:16px/1.7 "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       display:flex; align-items:center; justify-content:center; padding:24px;
     }
-    .wrap{max-width:860px;width:100%}
-    header{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:16px}
-    .title{font-size:clamp(28px,4.5vw,40px);line-height:1.15;letter-spacing:-.01em;margin:0 0 4px 0;font-weight:750}
-    .subtitle{margin:0;color:var(--muted)}
-    .badges{display:flex;gap:10px;flex-wrap:wrap}
-    .badge{
-      padding:6px 10px;border-radius:999px;background:var(--card);
-      border:1px solid rgba(0,0,0,.06)
-    }
-    .badge a{color:inherit;text-decoration:none}
-    .lang{
-      display:flex; gap:8px; align-items:center;
-      border:1px solid rgba(0,0,0,.08); border-radius:999px; padding:4px 6px; background:var(--card)
-    }
+    .wrap{width:100%; max-width:880px}
+    header{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:28px}
+    .title{font-weight:700; letter-spacing:-0.01em; line-height:1.1; margin:0}
+    .title span{display:block; font-size:clamp(28px,4.8vw,48px)}
+    .subtitle{margin:6px 0 0 0; color:var(--muted); font-weight:600; font-size:clamp(12px,1.8vw,14px)}
+    .lang{display:flex; gap:8px}
     .lang button{
-      border:0;background:transparent;color:var(--muted);padding:4px 8px;border-radius:8px;cursor:pointer;font-weight:600
+      appearance:none; border:1px solid var(--line); background:transparent; color:var(--fg);
+      padding:8px 12px; border-radius:999px; font-weight:600; cursor:pointer
     }
-    .lang button[aria-pressed="true"]{color:#001018;background:var(--accent)}
+    .lang button[aria-pressed="true"]{border-color:var(--fg)}
     .card{
-      background:var(--card); border:1px solid rgba(0,0,0,.06);
-      border-radius:16px; padding:24px; box-shadow:0 8px 30px -12px var(--ring); margin-top:16px
+      border:1px solid var(--fg); border-radius:16px; padding:28px;
     }
-    h2,h3{margin:0 0 10px 0}
-    p{margin:0 0 12px 0}
-    .pill{display:inline-block;margin-top:6px;color:var(--muted);font-size:14px}
-    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
-    .btn,.link{display:inline-flex;align-items:center;gap:8px;border-radius:12px;text-decoration:none;font-weight:600}
-    .btn{padding:10px 14px;background:var(--accent);color:#001018;border:1px solid rgba(0,0,0,.06)}
-    .btn:hover{filter:brightness(.95)}
-    .link{color:var(--accent);padding:8px 0}
-    footer{margin-top:20px;color:var(--muted);font-size:14px;text-align:center}
+    h2{margin:0 0 10px 0; font-size:clamp(18px,2.6vw,22px)}
+    p{margin:0; color:var(--muted)}
+    footer{margin-top:20px; color:var(--muted); font-size:13px; text-align:center}
     .hidden{display:none}
+    /* minimal focus for a11y */
+    :focus{outline:2px solid var(--fg); outline-offset:2px}
   </style>
 </head>
 <body>
   <main class="wrap">
     <header>
       <div>
-        <h1 class="title">Annamaja Segtnan</h1>
+        <h1 class="title"><span>Annamaja Segtnan</span></h1>
         <p class="subtitle" data-i18n="subtitle">UI/UX-designer • Stockholm</p>
       </div>
-      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-        <div class="badges">
-          <span class="badge">✉️ <a href="mailto:segtnan.annamaja@gmail.com">segtnan.annamaja@gmail.com</a></span>
-          <span class="badge">📞 <a href="tel:+46708554531">+46 70 855 45 31</a></span>
-          <span class="badge">🌐 <a href="https://annamajasegtnan.com" target="_blank" rel="noopener">annamajasegtnan.com</a></span>
-          <span class="badge">in <a href="https://www.linkedin.com/in/annamaja-segtnan" target="_blank" rel="noopener">LinkedIn</a></span>
-        </div>
-        <div class="lang" role="tablist" aria-label="Language">
-          <button id="svBtn" aria-pressed="true">SV</button>
-          <button id="enBtn" aria-pressed="false">EN</button>
-        </div>
-      </div>
+      <nav class="lang" role="tablist" aria-label="Language">
+        <button id="svBtn" aria-pressed="true">SV</button>
+        <button id="enBtn" aria-pressed="false">EN</button>
+      </nav>
     </header>
 
-    <!-- Card: WIP -->
-    <section class="card">
-      <h2 data-i18n="wipTitle">Portfolio under arbete</h2>
-      <p data-i18n="wipText">Jag bygger just nu min nya portfolio. Under tiden finns en kort presentation nedan och du är varmt välkommen att höra av dig.</p>
-      <span class="pill" data-i18n="wipPill">👷‍♀️ Uppdateras löpande</span>
-    </section>
-
-    <!-- Card: About (SV) -->
+    <!-- Placeholder (SV) -->
     <section id="sv" class="card">
-      <h3>Kort om mig</h3>
-      <p>
-        Min bakgrund är industridesign, men mitt intresse för hållbarhet gjorde att jag drogs till det digitala – där design kan ersätta fysiska produkter och samtidigt minska resursförbrukning. Jag har erfarenhet från retail, hospitality, ekonomi och medtech – och trivs allra bäst när systemen är komplexa, för då har design störst potential att göra skillnad. En arbetsgivare sa en gång till mig: ”Vi gillar att du inte är rädd för att kavla upp ärmarna och göra jobbet.” Min entreprenöriella bakgrund gör att jag har driv att få jobbet gjort – från användartester och idéutveckling till prototyper och ett pixelperfekt UI.
-      </p>
-      <div class="cta">
-        <a class="btn" href="mailto:segtnan.annamaja@gmail.com">Kontakta mig</a>
-        <a class="link" href="CV.pdf" target="_blank" rel="noopener">Öppna CV (PDF)</a>
-      </div>
+      <h2>Portfolio under arbete</h2>
+      <p>Jag bygger om min portfolio. Välkommen tillbaka snart.</p>
     </section>
 
-    <!-- Card: About (EN) -->
+    <!-- Placeholder (EN) -->
     <section id="en" class="card hidden" lang="en">
-      <h3>About</h3>
-      <p>
-        My background is industrial design, but my interest in sustainability drew me to the digital space—where design can replace physical products and reduce resource use. I’ve worked across retail, hospitality, finance and MedTech—and I thrive when systems are complex, because that’s where design has the greatest potential to make a difference. A former employer once told me: “We like that you’re not afraid to roll up your sleeves and get the job done.” My entrepreneurial background gives me the drive to take work all the way—from user testing and ideation to prototypes and pixel-perfect UI.
-      </p>
-      <div class="cta">
-        <a class="btn" href="mailto:segtnan.annamaja@gmail.com">Contact me</a>
-        <a class="link" href="CV.pdf" target="_blank" rel="noopener">Open CV (PDF)</a>
-      </div>
+      <h2>Portfolio in progress</h2>
+      <p>I’m rebuilding my portfolio. Please check back soon.</p>
     </section>
 
-    <footer>
-      © <span id="y"></span> Annamaja Segtnan • GitHub Pages
-    </footer>
+    <footer>© <span id="y"></span> Annamaja Segtnan</footer>
   </main>
 
   <script>
     const y = document.getElementById('y'); y.textContent = new Date().getFullYear();
+
     const svBtn = document.getElementById('svBtn');
     const enBtn = document.getElementById('enBtn');
     const svSec = document.getElementById('sv');
     const enSec = document.getElementById('en');
+
     const i18n = {
-      sv: {
-        subtitle:"UI/UX-designer • Stockholm",
-        wipTitle:"Portfolio under arbete",
-        wipText:"Jag bygger just nu min nya portfolio. Under tiden finns en kort presentation nedan och du är varmt välkommen att höra av dig.",
-        wipPill:"👷‍♀️ Uppdateras löpande"
-      },
-      en: {
-        subtitle:"UI/UX Designer • Stockholm",
-        wipTitle:"Portfolio in progress",
-        wipText:"I’m rebuilding my portfolio. In the meantime you’ll find a short intro below—feel free to get in touch.",
-        wipPill:"👷‍♀️ Updated continuously"
-      }
+      sv: { subtitle: "UI/UX-designer • Stockholm" },
+      en: { subtitle: "UI/UX Designer • Stockholm" }
     };
-    const els = {
-      subtitle: document.querySelector('[data-i18n="subtitle"]'),
-      wipTitle: document.querySelector('[data-i18n="wipTitle"]'),
-      wipText: document.querySelector('[data-i18n="wipText"]'),
-      wipPill: document.querySelector('[data-i18n="wipPill"]')
-    };
+    const sub = document.querySelector('[data-i18n="subtitle"]');
+
     function setLang(lang){
       document.documentElement.lang = lang;
-      const t = i18n[lang];
-      els.subtitle.textContent = t.subtitle;
-      els.wipTitle.textContent = t.wipTitle;
-      els.wipText.textContent = t.wipText;
-      els.wipPill.textContent = t.wipPill;
+      sub.textContent = i18n[lang].subtitle;
       svSec.classList.toggle('hidden', lang!=='sv');
       enSec.classList.toggle('hidden', lang!=='en');
-      svBtn.setAttribute('aria-pressed', lang==='sv');
-      enBtn.setAttribute('aria-pressed', lang==='en');
+      svBtn.setAttribute('aria-pressed', String(lang==='sv'));
+      enBtn.setAttribute('aria-pressed', String(lang==='en'));
       localStorage.setItem('lang', lang);
     }
     const saved = localStorage.getItem('lang');
     const initial = saved || (navigator.language || 'sv').slice(0,2);
     setLang(initial === 'en' ? 'en' : 'sv');
+
     svBtn.onclick = () => setLang('sv');
     enBtn.onclick = () => setLang('en');
   </script>
